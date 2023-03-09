@@ -1,0 +1,17 @@
+<model-viewer bounds="tight" src="HelloKitty.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls environment-image="neutral" poster="poster.webp" shadow-intensity="1" autoplay camera-target="0.0002025m 0.9505m 0.1m" shadow-softness="1">
+    <button class="Hotspot" slot="hotspot-2" data-position="0.13007857155935384m 1.0685295360204743m 0.28636189305108517m" data-normal="0.19451747037577163m 0.15789699732452878m 0.9681071696638285m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Kitty</div>
+    </button><button class="Hotspot" slot="hotspot-3" data-position="0.15541731468379716m 0.4758038057171516m 0.20038710651846348m" data-normal="0.5169433780282832m -0.20510645614467277m 0.831084162741946m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Kitty-Lower
+        </div>
+    </button>
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+    <div id="ar-prompt">
+        <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+    </div>
+</model-viewer>

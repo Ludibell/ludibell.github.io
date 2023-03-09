@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Ludibell WebXR</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+    <!-- OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
+    <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+  </head>
+  <body>
+      <!-- <model-viewer> HTML element  -->
+      <model-viewer id="anim" bounds="tight" src="MozartFlute.glb?sound=MozartFlute.mp3" ios-src="MozartFlute.usdz"  ar ar-modes=" scene-viewer webxr quick-look" 
+      camera-controls 
+      camera-target="0m 1m 0m"
+      camera-orbit="0deg 90deg auto"
+
+      skybox-image="music_hall_01_1k.hdr"
+      
+      poster="posterMozart.webp" shadow-intensity="1" autoplay>
+        
+        <button class="Hotspot selected" slot="hotspot-1" data-position="0.1778713610401644m 0.9057593408160054m 0.3043356214050975m" data-normal="0.7109452138881257m -0.24679656001717817m 0.6585198256797244m" data-visibility-attribute="visible">
+            <div class="HotspotAnnotation">Flute</div>
+        </button>
+        <button class="Hotspot selected" slot="hotspot-2" data-position="0.12182031349688056m 0.507633294664892m 0.12967973218788242m" data-normal="0.8274970286796774m -0.1424987922392609m 0.5430863299114214m" data-visibility-attribute="visible">
+            <div class="HotspotAnnotation">MOZART</div>
+        </button>
+
+        <button class="Hotspot hidden" slot="hotspot-3" data-position="0.22328803692552643m 0.8084403273507162m 0.3416240134727361m" data-normal="-0.00661408905619015m 0.7942357981906271m 0.607573658660787m" data-visibility-attribute="visible">
+            <div class="HotspotAnnotation">Violin</div>
+        </button>
+        <button class="Hotspot hidden" slot="hotspot-4" data-position="0.09866025760543641m 0.5150361119387307m 0.20355217474241305m" data-normal="0.08443196432520277m -0.1583373823639181m 0.9837685280320418m" data-visibility-attribute="visible">
+            <div class="HotspotAnnotation">VIVALDI</div>
+        </button>
+        
+        <div class="progress-bar hide" slot="progress-bar">
+           <div class="update-bar"></div>
+        </div>
+
+        <button slot="ar-button" id="ar-button">
+            View in your space
+        </button>
+
+        <div id="ar-prompt">
+            <img src="ar_hand_prompt.png">
+        </div>
+
+        <div class="slider">
+          <div class="slides">
+            <button id="switchBtn" class="slide selected" onclick="switchSrc(this, 'MozartFlute')" style="background-image: url(src/MozartFlute.png);"></button>
+            <button id="switchBtn" class="slide" onclick="switchSrc(this, 'VivaldiViolin')" style="background-image: url(src/VivaldiViolin.png);"></button>
+          </div>
+        </div>
+      </model-viewer>
+
+      
+      
+      
+      <script>
+        function changeAnim(strAnim){
+         return document.querySelector("model-viewer#anim").setAttribute("animation-name",strAnim);
+        }
+
+        function changeModel1(strModel){
+         return document.querySelector("model-viewer#anim").setAttribute("src",strModel);
+        }
+
+        function changeModel2(strModel1,strModel2){
+         return document.querySelector("model-viewer#anim").setAttribute("src",strModel1);
+         return document.querySelector("model-viewer#anim").setAttribute("ios-src",strModel2);
+        }
+        
+      </script>
+
+      <script>
+        const modelViewer = document.querySelector("model-viewer");
+
+        window.switchSrc = (element, name) => {
+          const base = ""+ name;
+          modelViewer.src = base + '.glb'+'?sound='+ base + '.mp3';
+          // modelViewer.poster = base + '.png';
+          const slides = document.querySelectorAll(".slide");
+
+          slides.forEach((element) => {element.classList.remove("selected");});
+          element.classList.add("selected");
+
+          const Hotspots = document.querySelectorAll(".Hotspot");
+
+          for (let index = 0; index < Hotspots.length; index++) {
+            const ele = Hotspots[index];
+            ele.classList.toggle("hidden")
+          }          
+        };
+
+          document.querySelector(".slider").addEventListener('beforexrselect', (ev) => {
+          // Keep slider interactions from affecting the XR scene.
+          ev.preventDefault();
+        });
+      </script>
+
+      <script>
+        const Hotspots = document.querySelectorAll(".Hotspot");
+
+        function hiddenHotspot(){
+          for (let index = 0; index < Hotspots.length; index++) {
+            const element = Hotspots[index];
+            element.classList.toggle("hidden")
+          }
+        }
+        document.querySelector("#switchBtn").addEventListener('click',hiddenHotspot);
+      </script>
+
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Ludibell Web AR Test</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+    <!-- OPTIONAL: The :focus-visible polyfill removes the focus ring for some input types -->
+    <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element  -->
+      <model-viewer id="anim" bounds="tight" src="https://storage.cloud.google.com/ludibell/LionKing.glb?sound=LionKing.mp3" ios-src="LionKingSound.usdz" animation-name="Running" ar ar-modes=" scene-viewer webxr quick-look" camera-controls environment-image="neutral" poster="posterRobot.webp" shadow-intensity="1" autoplay>
+        <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+        <button slot="ar-button" id="ar-button">
+            View in your space
+        </button>
+
+        <div id="ar-prompt">
+            <img src="ar_hand_prompt.png">
+        </div>
+
+        
+
+      </model-viewer>
+      <div class="anim-controls">
+        <button id="animBtn" onclick="changeAnim('Dance')">Dance</button>
+        <button id="animBtn" onclick="changeAnim('Running')">Running</button>
+        <button id="animBtn" onclick="changeAnim('Wave')">Wave</button>
+        <button id="switchBtn" onclick="changeModel2('HelloKitty.glb?sound=HelloKitty.mp3','HelloKittySound.usdz')">Switch to Kitty</button>
+        <button id="switchBtn" onclick="changeModel('RobotExpressive.glb?sound=test.mp3')">Switch to Robot</button>
+        <button id="switchBtn" onclick="changeModel2('LionKing.glb?sound=LionKing.mp3','LionKingSound.usdz')">Switch to LionKing</button>
+
+      </div>
+      
+      <script>
+        function changeAnim(strAnim){
+         return document.querySelector("model-viewer#anim").setAttribute("animation-name",strAnim);
+
+        }
+
+        function changeModel(strModel){
+         return document.querySelector("model-viewer#anim").setAttribute("src",strModel);
+        }
+
+        function changeModel2(strModel1,strModel2){
+         return document.querySelector("model-viewer#anim").setAttribute("src",strModel1);
+         return document.querySelector("model-viewer#anim").setAttribute("ios-src",strModel2);
+        }
+        // document.querySelector('#anim-controls').addEventListener('click', (event) => {
+        //   const animString = event.target.dataset.anim;
+          
+          
+        
+        //   if (!animString) {
+        //     return;
+        //   }
+        
+        //   // const anim = animString;
+        
+        //   console.log('Changing animation to: ', animString);
+        //   const modelAnimation = document.querySelector("model-viewer#anim").setAttribute("animation-name",animString);
+      
+        // });
+      </script>
+
+        
+
+      <!-- <script>
+        sound.addEventListener('click', ()=>{
+          sound.play();
+        });
+        sound.addEventListener('timeupdate', () => {
+          modelViewer.currentTime = audio.currentTime;
+        });
+      </script>   
+      
+    
+    
+    <!-- HelloKitty -->
+        <!-- skybox-image="music_hall_01_1k.hdr" -->
+    <!-- <model-viewer id="modelViewer" bounds="tight" src="HelloKitty.glb?sound=test.mp3"  ios-src="HelloKittySound.usdz" ar ar-modes="scene-viewer webxr quick-look" camera-controls environment-image="neutral" poster="posterKitty.webp" shadow-intensity="1" autoplay camera-target="0.0002025m 0.9505m 0.1m" shadow-softness="1">
+      
+      <button class="Hotspot" slot="hotspot-3" data-position="0.15541731468379716m 0.4758038057171516m 0.20038710651846348m" data-normal="0.5169433780282832m -0.20510645614467277m 0.831084162741946m" data-visibility-attribute="visible">
+        <div class="HotspotAnnotation">Kitty</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+    </model-viewer>   -->
+    <!-- <audio autoplay controls loop id="sound" src="HelloKitty.mp3"></audio>
+    <script>
+      sound.addEventListener('click', ()=>{
+        sound.play();
+      });
+      sound.addEventListener('timeupdate', () => {
+        modelViewer.currentTime = audio.currentTime;
+      });
+    </script> -->
+
+    <!-- HelloKitty -->
+
+    
+    
+
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  </body>
+</html>

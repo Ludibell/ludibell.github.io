@@ -1,0 +1,25 @@
+
+<div id='vrview'>
+    <iframe allowfullscreen="true" scrolling="no" width="100%" height="300" 
+    src="https://storage.googleapis.com/vrview/2.0/index.html?
+    preview=https://storage.googleapis.com/vrview/examples/coral-preview.jpg
+    &amp;image=https://storage.googleapis.com/vrview/examples/coral.jpg
+    &amp;is_stereo=true&amp;" 
+    style="border: 0px;">
+    </iframe>
+</div>
+<script src="https://storage.googleapis.com/vrview/2.0/build/vrview.min.js"></script>
+<script>
+    window.addEventListener('load', onVrViewLoad)
+    function onVrViewLoad() {
+      var vrView = new VRView.Player('#vrview', {
+        width: '100%',
+        height: 300,
+        preview: 'https://storage.googleapis.com/vrview/examples/coral-preview.jpg',
+        image: 'https://storage.googleapis.com/vrview/examples/coral.jpg',
+        is_stereo: true
+      });
+    }
+  </script>
+
+  
